@@ -100,6 +100,14 @@ static void printResult(cl_ulong4 seed, cl_ulong round, result r, cl_uchar score
 
 	std::cout << mode.transformName();
 	std::cout << ": 0x" << strPublic << std::endl;
+
+	std::ofstream outFile("output.txt", std::ios::app);
+
+	outFile << "Time: " << std::setw(5) << seconds << "s Score: " << std::setw(2) << (int) score << " Private: 0x" << strPrivate << ' ';
+	outFile << mode.transformName();
+	outFile << ": 0x" << strPublic << std::endl;
+
+	outFile.close();
 }
 
 unsigned int getKernelExecutionTimeMicros(cl_event & e) {
